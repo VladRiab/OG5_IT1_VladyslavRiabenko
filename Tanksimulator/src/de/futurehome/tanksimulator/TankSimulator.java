@@ -7,6 +7,8 @@ import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
+import javax.swing.JProgressBar;
+//import javax.swing.plaf.ProgressBarUI;
 
 @SuppressWarnings("serial")
 public class TankSimulator extends Frame {
@@ -20,6 +22,7 @@ public class TankSimulator extends Frame {
 	public Button btnEinfuellen = new Button("Einf�llen");
 	public Button btnVerbrauchen = new Button("Verbrauchen");	
 	public Button btnZurücksetzen = new Button("Zurücksetzen");
+	public JProgressBar progressBar = new JProgressBar(0, 200);
 	
 	private Panel pnlNorth = new Panel();
 	private Panel pnlCenter = new Panel(new FlowLayout());
@@ -47,6 +50,9 @@ public class TankSimulator extends Frame {
 		this.add(this.pnlSouth, BorderLayout.SOUTH);
 		this.pack();
 		this.setVisible(true);
+		
+		this.pnlCenter.add(this.progressBar);
+		
 		
 		// Ereignissteuerung
 		this.btnEinfuellen.addActionListener(myActionListener);
