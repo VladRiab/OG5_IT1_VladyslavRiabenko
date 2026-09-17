@@ -254,6 +254,9 @@ public class GameControl {
 			case CharKey.RARROW:
 				raumschiff.setWinkel(raumschiff.getWinkel() - 5);
 				break;
+			case CharKey.f:
+				score = score + 1000;
+				break;
 			default:
 			}
 		} while (keyPressed.code != CharKey.ESC);
