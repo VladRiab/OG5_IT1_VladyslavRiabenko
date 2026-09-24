@@ -17,6 +17,7 @@ public class GameControl {
 	private int score = 0;
 
 	private ArrayList<Planet> listPlaneten = new ArrayList<Planet>();
+	private ArrayList<Mond> listMonden = new ArrayList<Mond>();
 	private ArrayList<Ladung> listLadungen = new ArrayList<Ladung>();
 
 	private Universum universum;
@@ -25,11 +26,12 @@ public class GameControl {
 
 	private ConsoleSystemInterface meineConsole;
 
-	private static final CSIColor BORDER_COLOR = new CSIColor(128, 0, 0, 128);
+	private static final CSIColor BORDER_COLOR = new CSIColor(0, 255, 255, 255);
 	private static final CSIColor SHIP_COLOR = CSIColor.GREEN;
-	private static final CSIColor STAR_COLOR = CSIColor.FIREBRICK;
+	private static final CSIColor STAR_COLOR = CSIColor.GOLD;
 	private static final CSIColor PLANET_COLOR = CSIColor.BLUE;
-	private static final CSIColor FREIGHT_COLOR = CSIColor.BROWNER;
+	private static final CSIColor MOND_COLOR = CSIColor.WHITE;
+	private static final CSIColor FREIGHT_COLOR = CSIColor.OLD_ROSE;
 
 	public GameControl() {
 		Properties text = new Properties();
@@ -85,6 +87,13 @@ public class GameControl {
 		if (!listPlaneten.contains(meinPlanet)) {
 			listPlaneten.add(meinPlanet);
 		}
+	}
+
+	public void addMond(Mond meinMond) {
+		if(!listMonden.contains(meinMond)) {
+			listMonden.add(meinMond);
+		}
+		
 	}
 
 	public void removePlanet(Planet meinPlanet) {
@@ -193,6 +202,14 @@ public class GameControl {
 		drawShape(planetShape, PLANET_COLOR, transformedPos);
 	}
 
+	private void drawMond(Mond mond) {
+		int centerX = (int)mond.getPosX();
+		int centerY = (int)mond.getPosY();
+		Position transformedPos = transformPos(new Position(centerX, centerY));
+		char [][] mondShape = Mond.getDarstellung();
+		drawShape(mondShape, MOND_COLOR, transformedPos);
+	}
+	
 	private void drawLadung(Ladung ladung) {
 		int centerX = (int) ladung.getPosX();
 		int centerY = (int) ladung.getPosY();
@@ -214,6 +231,9 @@ public class GameControl {
 		for (Ladung ladung : listLadungen) {
 			drawLadung(ladung);
 		}
+		for (Mond mond : listMonden) {
+			drawMond(mond);
+		}
 		// Male Raumschiff - immer in der Mitte
 		drawShip();
 		// Male Infos
@@ -229,6 +249,7 @@ public class GameControl {
 		meineConsole.print(26, 5, "Willkommen bei StarSim 2099!", CSIColor.AMBER);
 		meineConsole.saveBuffer();
 		meineConsole.print(24, 20, "Drücken Sie LEERTASTE zum Start!");
+		meineConsole.print(13, 22, "Drücke auf den Planeten die Taste F, um Punkte zu bekommen!", CSIColor.AQUA);
 		meineConsole.refresh();
 		meineConsole.waitKey(CharKey.SPACE);
 
@@ -255,7 +276,7 @@ public class GameControl {
 				raumschiff.setWinkel(raumschiff.getWinkel() - 5);
 				break;
 			case CharKey.f:
-				score = score + 1000;
+				score = score + 100;
 				break;
 			default:
 			}
