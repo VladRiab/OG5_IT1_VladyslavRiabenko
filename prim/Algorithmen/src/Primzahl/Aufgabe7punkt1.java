@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Aufgabe7punkt1 {
 public static void main(String[] args) {
 	  Scanner scan = new Scanner(System.in); 
-	  System.out.print("Geben Sie eine Zahl "); 
+	  System.out.print("Geben Sie eine Zahl ");  //Bitte
 	  long zahl = scan.nextLong(); 
 	  System.out.println(isPrim(zahl));
 	  
