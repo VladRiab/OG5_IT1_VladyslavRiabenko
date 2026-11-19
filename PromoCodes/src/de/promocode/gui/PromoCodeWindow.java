@@ -62,7 +62,10 @@ public class PromoCodeWindow extends JFrame {
 
 		// Bereite Liste vor
 		listCodes = CodeGenerator.getSortedList(20000000, 100000000000L, 999999999999L);
-
+       System.out.println("Generation");
+       for (long code : listCodes.clone()) {
+    	   System.out.println(code);
+       }
 		// Setze Schriftart
 		this.lblUeberschrift.setFont(this.lblUeberschrift.getFont().deriveFont(Font.BOLD, 16f));
 

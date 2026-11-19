@@ -8,14 +8,19 @@ public class CodeGenerator {
 		Random rand = new Random(111111);
 		long[] zahlenliste = new long[laenge];
 		long naechsteZahl = min;
+		
+	
 
 		for (int i = 0; i < laenge; i++) {
 			naechsteZahl += rand.nextInt(3) + 1;
 			zahlenliste[i] = naechsteZahl;
 		}
-		
+		System.out.println(" "   );
 		System.out.println("Letzte Zahl ist " + zahlenliste[zahlenliste.length-1]);
 		return zahlenliste;
+		
+		
+		
 	}
 
 }
